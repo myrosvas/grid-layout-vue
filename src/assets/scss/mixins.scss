@@ -1,0 +1,3 @@
+@mixin column($start-column, $end-column) {
+  grid-column: $start-column / $end-column + 1;
+}
