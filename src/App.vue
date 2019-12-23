@@ -1,13 +1,17 @@
 <template>
   <div id="app">
     <Dashboard />
-    <Container />
+    <Container
+      columns="repeat(4, 1fr)"
+      :images="images"
+    />
   </div>
 </template>
 
 <script>
 import Dashboard from './components/Dashboard';
 import Container from './components/Container';
+import { images } from '../config/data';
 
 export default {
   name: 'app',
@@ -17,7 +21,8 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      images
     }
   }
 }

@@ -1,20 +1,34 @@
 <template>
-<div class="container">
+<div class="container"
+  :style="{
+    'grid-template-columns': columns
+  }"
+>
   <div
     v-for="image in images"
     :key="image.src"
     class="image-wrapper"
     :class="[`row${image.row}`, `column${image.column}`]"
   >
-    <img class="image" :src="image.src" />
+    <Banner v-if="image.type === 'banner'" :src="image.src" />
   </div>
+  <!-- <Slider /> -->
 </div>
 </template>
 
 <script>
-import { images } from '../../config/data';
+import Banner from './Banner';
+import Slider from './Slider';
 
 export default {
+  components: {
+    Banner,
+    Slider
+  },
+  props: {
+    columns: String,
+    images: Array
+  },
   data: () => {
     return ({
         images: images
@@ -27,15 +41,17 @@ export default {
 @import '../assets/scss/mixins.scss';
 
   .container {
-    height: 600px;
     width: 100%;
     display: grid;
-    grid-template-rows: 300px 300px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: fit-content(100%);
 
     .image {
       width: 100%;
       height: 100%;
+    }
+
+    .image-wrapper {
+      display: flex;
     }
 
     .row1 {
