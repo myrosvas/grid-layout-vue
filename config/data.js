@@ -2,7 +2,7 @@ export const images = [
   {
     type: 'banner',
     src: 'https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
-    row: '1-2',
+    row: '2',
     column: '1-2'
   },
   {
@@ -33,7 +33,7 @@ export const images = [
     type: 'slider',
     src: 'https://images.pexels.com/photos/62289/yemen-chameleon-chamaeleo-calyptratus-chameleon-reptile-62289.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
     row: '1',
-    column: '1'
+    column: '1-2'
   },
   // {
   //   src: 'https://images.pexels.com/photos/1126384/pexels-photo-1126384.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',

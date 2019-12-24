@@ -11,8 +11,8 @@
     :class="[`row${image.row}`, `column${image.column}`]"
   >
     <Banner v-if="image.type === 'banner'" :src="image.src" />
+    <Slider v-else />
   </div>
-  <!-- <Slider /> -->
 </div>
 </template>
 

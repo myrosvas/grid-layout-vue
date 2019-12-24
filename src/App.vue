@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <!-- <Slider /> -->
+    <!-- <Dashboard /> -->
     <Container
       columns="repeat(4, 1fr)"
       :images="images"
@@ -11,13 +12,15 @@
 <script>
 import Dashboard from './components/Dashboard';
 import Container from './components/Container';
+import Slider from './components/Slider';
 import { images } from '../config/data';
 
 export default {
   name: 'app',
   components: {
     Dashboard,
-    Container
+    Container,
+    Slider
   },
   data () {
     return {

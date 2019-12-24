@@ -1,27 +1,73 @@
 <template>
-    <simple-carousel-container loop :watch-it="photos">
-        <simple-carousel-item v-for="(photo, index) in photos" :key="index">
-            <img :src="photo">
-        </simple-carousel-item>
-    </simple-carousel-container>
-</template>
- 
-<script>
-    import { SimpleCarouselContainer, SimpleCarouselItem } from 'vue-simple-carousel';
+  <div>
+    <b-carousel
+      id="carousel-1"
+      v-model="slide"
+      :interval="4000"
+      controls
+      indicators
+      background="#ababab"
+      img-width="1024"
+      img-height="100%"
+      style="text-shadow: 1px 1px 2px #333; height: 100%"
+      @sliding-start="onSlideStart"
+      @sliding-end="onSlideEnd"
+    >
+      <!-- Text slides with image -->
+      <b-carousel-slide
+        caption="First slide"
+        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
+        img-src="https://picsum.photos/1024/480/?image=52"
+        style="height: 100%"
+      ></b-carousel-slide>
 
-    export default {
-      components: {
-        SimpleCarouselContainer,
-        SimpleCarouselItem
-      },
-      data() {
-        return {
-          photos: [
-            'https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
-            'https://images.pexels.com/photos/146083/pexels-photo-146083.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-            'https://images.pexels.com/photos/288621/pexels-photo-288621.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-          ]       
-        }
+      <!-- Slides with custom text -->
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54" style="height: 100%">
+        <h1>Hello world!</h1>
+      </b-carousel-slide>
+
+      <!-- Slides with image only -->
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58" style="height: 100%"></b-carousel-slide>
+
+      <!-- Slides with img slot -->
+      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
+      <b-carousel-slide style="height: 100%">
+        <template v-slot:img style="height: 100%">
+          <img
+            class="d-block img-fluid w-100"
+            width="1024"
+            height="100%"
+            src="https://picsum.photos/1024/480/?image=55"
+            alt="image slot"
+          >
+        </template>
+      </b-carousel-slide>
+    </b-carousel>
+  </div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        slide: 0,
+        sliding: null
       }
-    };
-</script> 
+    },
+    methods: {
+      onSlideStart(slide) {
+        this.sliding = true
+      },
+      onSlideEnd(slide) {
+        this.sliding = false
+      }
+    }
+  }
+</script>
+
+<style lang="scss">
+.carousel-inner, .carousel-item, .active, #carousel-1___BV_inner_, img {
+  height: 100% !important;
+}
+
+</style>
