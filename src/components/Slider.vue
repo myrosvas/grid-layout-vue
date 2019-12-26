@@ -66,8 +66,7 @@
 </script>
 
 <style lang="scss">
-.carousel-inner, .carousel-item, .active, #carousel-1___BV_inner_, img {
+#carousel-1___BV_inner_, img {
   height: 100% !important;
 }
-
 </style>
