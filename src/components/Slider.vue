@@ -1,15 +1,15 @@
-<template>
-  <div>
+<template style="width: 100%; height: 100%">
+ <div>
     <b-carousel
       id="carousel-1"
       v-model="slide"
-      :interval="4000"
+      :interval="0"
       controls
       indicators
       background="#ababab"
-      img-width="1024"
+      img-width="100%"
       img-height="100%"
-      style="text-shadow: 1px 1px 2px #333; height: 100%"
+      style="text-shadow: 1px 1px 2px #333;"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
@@ -18,25 +18,24 @@
         caption="First slide"
         text="Nulla vitae elit libero, a pharetra augue mollis interdum."
         img-src="https://picsum.photos/1024/480/?image=52"
-        style="height: 100%"
       ></b-carousel-slide>
 
       <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54" style="height: 100%">
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
         <h1>Hello world!</h1>
       </b-carousel-slide>
 
       <!-- Slides with image only -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58" style="height: 100%"></b-carousel-slide>
+      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
 
       <!-- Slides with img slot -->
       <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-      <b-carousel-slide style="height: 100%">
-        <template v-slot:img style="height: 100%">
+      <b-carousel-slide>
+        <template v-slot:img>
           <img
             class="d-block img-fluid w-100"
             width="1024"
-            height="100%"
+            height="480"
             src="https://picsum.photos/1024/480/?image=55"
             alt="image slot"
           >
@@ -66,7 +65,4 @@
 </script>
 
 <style lang="scss">
-#carousel-1___BV_inner_, img {
-  height: 100% !important;
-}
 </style>

@@ -8,9 +8,51 @@
     v-for="image in images"
     :key="image.src"
     class="image-wrapper"
-    :class="[`row${image.row}`, `column${image.column}`]"
+    :class="[`row${image.row}`, `column${image.column}`, {clickable: image.url}]"
+    @click="redirect(image.url)"
   >
-    <Banner v-if="image.type === 'banner'" :src="image.src" />
+    <Banner
+      v-if="image.type === 'banner'"
+      :src="image.src"
+    />
+    <template v-if="image.text">
+      <div class='text-wrapper' v-for="item in image.text" :key="item.text">
+        <span
+          :style="{
+            position: 'absolute',
+            top: item.top,
+            left: item.left,
+            fontSize: item.fontSize,
+            color: item.color,
+            fontFamily: item.fontFamily
+          }"
+        >
+          {{item.text}}
+        </span>
+      </div>
+    </template>
+    <template v-if="image.type === 'banner'">
+      <div
+        class="link-wrapper"
+        v-for="link in image.links"
+        :key="link.text"
+      >
+        <a
+          class="banner-link"
+          :style="{
+            top: link.top,
+            left: link.left,
+            fontSize: link.fontSize,
+            fontFamily: link.fontFamily,
+            color: link.color,
+            zIndex: 1
+          }"
+          :href="link.url"
+        >
+          {{link.text}}
+        </a>
+      </div>
+    </template>
     <Slider v-else />
   </div>
 </div>
@@ -21,6 +63,9 @@ import Banner from './Banner';
 import Slider from './Slider';
 
 export default {
+  // mounted: function () {
+  //   console.log(this.images)
+  // },
   components: {
     Banner,
     Slider
@@ -29,10 +74,12 @@ export default {
     columns: String,
     images: Array
   },
-  data: () => {
-    return ({
-        images: images
-    })
+  methods: {
+    redirect: (url) => {
+      if(url) {
+        window.open(url);
+      }
+    }
   }
 }
 </script>
@@ -44,6 +91,25 @@ export default {
     width: 100%;
     display: grid;
     grid-template-rows: fit-content(100%);
+    grid-row-gap: 2px;
+    grid-column-gap: 2px;
+
+    .link-wrapper {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .banner-link {
+      position: absolute;
+      text-decoration: underline;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
 
     .image {
       width: 100%;
@@ -52,6 +118,7 @@ export default {
 
     .image-wrapper {
       display: flex;
+      position: relative;
     }
 
     .row1 {
@@ -64,6 +131,22 @@ export default {
 
     .row1-2 {
       grid-row: 1 / 3;
+    }
+
+    .row2-3 {
+      grid-row: 2 / 4;
+    }
+
+    .row3-4 {
+      grid-row: 3 / 5;
+    }
+
+    .row4-5 {
+      grid-row: 4 / 6;
+    }
+
+    .row5-6 {
+      grid-row: 5 / 7;
     }
 
     .column1 {
@@ -104,6 +187,10 @@ export default {
 
     .column3-4 {
       grid-column: 3 / 5;
+    }
+
+    .clickable {
+      cursor: pointer;
     }
   }
 </style>

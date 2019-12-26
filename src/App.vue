@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Dashboard />
+    <!-- <Dashboard /> -->
     <Container
       columns="repeat(4, 1fr)"
       :images="images"
@@ -21,7 +21,6 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       images
     }
   }
